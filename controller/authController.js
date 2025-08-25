@@ -1,15 +1,16 @@
 
 const predefinedUser=require("../model/userModel.json")
-
+console.log(predefinedUser)
 
 const getLoginpage=(req,res)=>{
      if(req.session.user)
-       return res.redirect('/home')
+       return res.redirect('/home')  
 
     res.render('login')
 }
 
 const postLogin=(req,res,next)=>{
+
     const {username,password}=req.body
     console.log(req.body)
     const foundUser=predefinedUser.find(person=>person.username===username)
@@ -17,6 +18,7 @@ const postLogin=(req,res,next)=>{
     console.log(foundUser) 
     if(foundUser?.password===password){
         req.session.user={username:username}
+        res.redirect('/home')
     }
     else
     {
@@ -25,14 +27,9 @@ const postLogin=(req,res,next)=>{
 }
 
 const getHomePage=(req,res)=>{
-    if(!req.session.user)
-    {
-        return res.redirect('/login')   
-    }
     res.render('home',{user:req.session.user})
-
 }
-    
+
 const postLogout=(req,res)=>{
    req.session.destroy((err)=>{
     if(err){
@@ -44,9 +41,4 @@ const postLogout=(req,res)=>{
 }
 
 
-module.exports={
-    getLoginpage,
-    postLogin,
-    getHomePage,
-    postLogout
-}
+module.exports={getLoginpage,postLogin,getHomePage,postLogout}

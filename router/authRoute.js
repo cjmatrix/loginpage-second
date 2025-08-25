@@ -1,14 +1,17 @@
 const authController=require("../controller/authController")
 const express=require("express")
 const router=express.Router();
-const verifySession=require("../middileware/verifySession")
+const verifySession=require("../middleware/verifySession")
+const path=require('path')
 
-router.get('/login',authController.getHomePage)
 
-router.post("login",verifySession,authController.postLogin)
+router.get('/',authController.getLoginpage)
+router.get('/login',authController.getLoginpage)
 
-router.get('/home',authController.getHomePage)
+router.post("/login",authController.postLogin)
 
-router.post('/home',authController.postLogout)
+router.get('/home',verifySession,authController.getHomePage)
 
-module.exports=router
+router.post('/logout',authController.postLogout)
+
+module.exports=router   
