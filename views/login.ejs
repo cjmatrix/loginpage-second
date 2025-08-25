@@ -4,36 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
-        h1 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.5rem; }
-        input { width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 0.7rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
-        button:hover { background-color: #0056b3; }
-        .error { color: #d93025; text-align: center; margin-top: 1rem; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="/css/stylesLogin.css">
+    
+
 </head>
 <body>
-    <div class="login-container">
+    <div class="main-container flex w-[1000px] h-[480px] bg-[#d93025]">
+        <div class="left bg-slate-950 flex justify-center items-center">
+            <h1 class="text-white text-[2.5rem] font-bold textW">WELCOME BACK!</h1>
+        </div>
+
+         <div class="login-container">
         <h1>User Login</h1>
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" id="form">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <!-- <label for="username">Username</label> -->
+                <input class="w-[20rem] bg-slate-100 h-[2.5rem] rounded-xl" type="text" id="username" name="username"  placeholder="Username">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <!-- <label for="password">Password</label> -->
+                <input class="w-[20rem]  bg-slate-100 h-[2.5rem] rounded-xl" type="password" id="password" name="password"  placeholder="Password">
             </div>
             <button type="submit">Login</button>
-        </form>
-        
+      
+                  <div class="error testing">
         <% if (typeof error !== 'undefined' &&error) { %>
-            <p class="error"><%= error %></p>
+            <%= error %>
         <% } %>
+          
+
+            </div>
+     
+         </div>
+       
     </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="/js/loginPage.js"></script>
 </body>
 </html>

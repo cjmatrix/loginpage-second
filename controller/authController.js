@@ -6,13 +6,25 @@ const getLoginpage=(req,res)=>{
      if(req.session.user)
        return res.redirect('/home')  
 
+     console.log(req.url)
     res.render('login')
+
 }
 
 const postLogin=(req,res,next)=>{
 
     const {username,password}=req.body
     console.log(req.body)
+     if(!username && !password){
+        return  res.render('login',{error:"Password and Username is required"})
+    }
+     if(!username){
+        return  res.render('login',{error:"Username is required"})
+    }
+
+    if(!password){  
+        return  res.render('login',{error:"Password is required"})
+    }
     const foundUser=predefinedUser.find(person=>person.username===username)
     
     console.log(foundUser) 
@@ -27,6 +39,7 @@ const postLogin=(req,res,next)=>{
 }
 
 const getHomePage=(req,res)=>{
+         console.log(req.url)
     res.render('home',{user:req.session.user})
 }
 
